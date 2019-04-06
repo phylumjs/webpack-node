@@ -33,7 +33,7 @@ new Task(async t => {
 	await t.use(node);
 });
 ```
-*Note that the electron task assumes, that the main bundle has already been compiled.*
+*Note that the node task assumes, that the main bundle has already been compiled.*
 
 ## Hot Module Replacement
 ```ts
