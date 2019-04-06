@@ -16,8 +16,12 @@ export class WebpackNodeTask extends Task<WebpackNodeResult> {
 				options.entry ? resolve(context, options.entry) : mainCompiler.options.output.path,
 				options.args || [],
 				{
+					execPath: options.execPath,
+					execArgv: options.execArgv,
 					cwd: options.cwd || context,
-					stdio: options.stdio || [0, 1, 2, 'ipc']
+					stdio: options.stdio || [0, 1, 2, 'ipc'],
+					uid: options.uid,
+					gid: options.gid
 				}
 			);
 			proc.on('message', message => {
@@ -76,10 +80,14 @@ export class WebpackNodeTask extends Task<WebpackNodeResult> {
 export interface WebpackNodeOptions {
 	readonly main: WebpackTask;
 	readonly mainHmr?: boolean;
+	readonly execPath?: string;
+	readonly execArgv?: string[];
 	readonly entry?: string;
 	readonly cwd?: string;
 	readonly args?: string[];
 	readonly stdio?: StdioOptions;
+	readonly uid?: number;
+	readonly gid?: number;
 }
 
 export interface WebpackNodeResult {
