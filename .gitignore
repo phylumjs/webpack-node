@@ -1,0 +1,5 @@
+/node_modules
+/dist
+/dist_test
+/.nyc_output
+/*.tgz

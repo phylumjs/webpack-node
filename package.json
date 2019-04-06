@@ -1,0 +1,46 @@
+{
+	"name": "@phylum/webpack-node",
+	"version": "1.0.0-beta.0",
+	"description": "Run a node process from a webpack bundle",
+	"main": "dist/index.js",
+	"scripts": {
+		"compile": "tsc",
+		"compile:watch": "tsc -w",
+		"test": "tsc -p tsconfig-test.json && nyc -- ava -v",
+		"watch": "concurrently -n tsc,ava \"tsc -w -p tsconfig-test.json\" \"ava -wv\"",
+		"prepack": "rimraf dist && npm run compile"
+	},
+	"dependencies": {
+		"@types/node": "^11.13.0"
+	},
+	"devDependencies": {
+		"@phylum/cli": "^4.0.0",
+		"@phylum/pipeline": "^4.0.3",
+		"@phylum/webpack": "^4.0.3",
+		"@types/fs-extra": "^5.0.5",
+		"ava": "^1.4.1",
+		"concurrently": "^4.1.0",
+		"fs-extra": "^7.0.1",
+		"nyc": "^13.3.0",
+		"rimraf": "^2.6.3",
+		"typescript": "^3.4.2",
+		"webpack": "^4.29.6"
+	},
+	"peerDependencies": {
+		"@phylum/pipeline": "^4.0.2",
+		"@phylum/webpack": "^4.0.2"
+	},
+	"ava": {
+		"files": [
+			"dist_test/test/**/*.js"
+		]
+	},
+	"nyc": {
+		"exclude": [
+			"dist_test/test"
+		]
+	},
+	"repository": "github:phylumjs/webpack-node",
+	"author": "Max J. Polster",
+	"license": "MIT"
+}
