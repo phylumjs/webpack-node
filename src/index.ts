@@ -66,7 +66,7 @@ export class WebpackNodeTask extends Task<WebpackNodeResult> {
 							t.reset();
 						}
 					});
-				}));
+				}, false));
 			}
 			return result;
 		});
